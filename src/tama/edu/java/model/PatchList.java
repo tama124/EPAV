@@ -12,7 +12,7 @@ public class PatchList {
 	public PatchList() {
 		listOfPatch = new ArrayList<Patch>();
 	}
-	
+
 	public void add(Patch patch) {
 		listOfPatch.add(patch);
 	}
@@ -21,7 +21,7 @@ public class PatchList {
 		String tmp = new String();
 		for (int i = 0; i < this.listOfPatch.size(); i++) {
 			tmp += this.listOfPatch.get(i);
-			if(i + 1 < this.listOfPatch.size()) {
+			if (i + 1 < this.listOfPatch.size()) {
 				tmp += ", ";
 			}
 		}

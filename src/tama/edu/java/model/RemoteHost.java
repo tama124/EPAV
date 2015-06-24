@@ -1,6 +1,5 @@
 package tama.edu.java.model;
 
-
 public class RemoteHost {
 	private String iP;
 	private String mAC;
@@ -51,7 +50,8 @@ public class RemoteHost {
 
 	@Override
 	public String toString() {
-		return "Host [IP=" + this.iP + ", MAC=" + this.mAC + ", OS=" + this.oS + ", Ports="
-				+ this.ports.display() + ", Vulnerabilities =" + this.vulnerabilities.display() + "]";
+		return "Host [IP=" + this.iP + ", MAC=" + this.mAC + ", OS=" + this.oS
+				+ ", Ports=" + this.ports.display() + ", Vulnerabilities ="
+				+ this.vulnerabilities.display() + "]";
 	}
 }

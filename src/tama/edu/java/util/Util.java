@@ -14,7 +14,7 @@ import tama.edu.java.runtime.SystemCommandExecutor;
 public class Util {
 	// create a pattern to check valid ip address
 	private static final String IPV4_PATTERN = "^(([01]?\\d\\d?|2[0-4]\\d|25[0-5])\\.){3}([01]?\\d\\d?|2[0-4]\\d|25[0-5])$";
-	
+
 	public Dimension getScreenSize() {
 		Dimension screenSize = Toolkit.getDefaultToolkit().getScreenSize();
 		Double screenWidthDouble = screenSize.getWidth();
@@ -41,11 +41,11 @@ public class Util {
 	}
 
 	public boolean checkValidIpAddress(String ip) {
-	      Pattern pattern = Pattern.compile(IPV4_PATTERN);
-	      Matcher matcher = pattern.matcher(ip);
-	      return matcher.matches();             
+		Pattern pattern = Pattern.compile(IPV4_PATTERN);
+		Matcher matcher = pattern.matcher(ip);
+		return matcher.matches();
 	}
-	
+
 	public boolean checkValidRootPass(String pass) {
 		String stderr = "";
 		try {
@@ -54,9 +54,10 @@ public class Util {
 			commands.add("-c");
 			commands.add("echo " + pass + " | sudo -S blabla");
 
-			SystemCommandExecutor commandExecutor = new SystemCommandExecutor(commands);
+			SystemCommandExecutor commandExecutor = new SystemCommandExecutor(
+					commands);
 			commandExecutor.executeCommand();
-			
+
 			stderr = commandExecutor.getStandardErrorFromCommand() + "";
 		} catch (Exception e) {
 			e.printStackTrace();
@@ -67,7 +68,7 @@ public class Util {
 			return true;
 		}
 	}
-	
+
 	public String getRootPass(char[] pass) {
 		String rootPass = new String();
 		for (int i = 0; i < pass.length; i++) {

@@ -18,7 +18,7 @@ import javax.swing.event.ChangeListener;
 import javax.swing.plaf.ActionMapUIResource;
 
 public class TristateCheckBox extends JCheckBox {
-	
+
 	private static final long serialVersionUID = 1L;
 
 	/** This is a type-safe enumerated type */

@@ -56,7 +56,8 @@ public class Port {
 	private void setSolution() {
 		if (this.warning == BADWARNING) {
 			String[] tmp = this.name.split("/");
-			this.solution = SOLUTION_1 + tmp[0] + SOLUTION_2 + tmp[1] + SOLUTION_3 + tmp[0] + SOLUTION_4;
+			this.solution = SOLUTION_1 + tmp[0] + SOLUTION_2 + tmp[1]
+					+ SOLUTION_3 + tmp[0] + SOLUTION_4;
 		} else {
 			this.solution = "none";
 		}
@@ -73,7 +74,7 @@ public class Port {
 
 	@Override
 	public String toString() {
-		return "Port [Name=" + this.name + ", State=" + this.state + ", Service="
-				+ this.service + "]";
+		return "Port [Name=" + this.name + ", State=" + this.state
+				+ ", Service=" + this.service + "]";
 	}
 }

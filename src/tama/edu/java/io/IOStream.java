@@ -44,7 +44,7 @@ public class IOStream {
 			e.printStackTrace();
 		}
 	}
-	
+
 	public void appendTextToExistingFile(String fileName, String content) {
 		try {
 			FileWriter fw = new FileWriter(fileName, true);
@@ -55,14 +55,15 @@ public class IOStream {
 			e.printStackTrace();
 		}
 	}
-	
+
 	public ArrayList<String> getPatchNameList() {
 		final ArrayList<String> patchNameList = new ArrayList<String>();
 		Thread t = new Thread(new Runnable() {
 			public void run() {
 				try {
-					File[] listOfPatches = new File("./src/main/edu/patch").listFiles();
-					
+					File[] listOfPatches = new File("./src/main/edu/patch")
+							.listFiles();
+
 					for (File file : listOfPatches) {
 						if (file.isFile()) {
 							patchNameList.add(file.getName());
@@ -74,28 +75,31 @@ public class IOStream {
 			}
 		});
 		t.start();
-		
+
 		// wait thread finish then return
 		try {
 			t.join();
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
-		
+
 		return patchNameList;
 	}
-	
-	public void copyPatchesToHosts(String hostIp, PatchList patchList, String currentTime) {
+
+	public void copyPatchesToHosts(String hostIp, PatchList patchList,
+			String currentTime) {
 		final String hostPath = "./host/" + currentTime + "_" + hostIp;
 		File newDirectory = new File(hostPath);
 		if (!newDirectory.exists()) {
 			newDirectory.mkdirs();
 		}
 		for (int i = 0; i < patchList.getListOfPatch().size(); i++) {
-			copyFile("./src/main/edu/patch/" + patchList.getListOfPatch().get(i).getName(), hostPath + "/" + patchList.getListOfPatch().get(i).getName());
+			copyFile("./src/main/edu/patch/"
+					+ patchList.getListOfPatch().get(i).getName(), hostPath
+					+ "/" + patchList.getListOfPatch().get(i).getName());
 		}
 	}
-	
+
 	private void copyFile(String fromFile, String toFile) {
 		if (!new File(toFile).exists()) {
 			FileInputStream from = null;
@@ -105,8 +109,8 @@ public class IOStream {
 				to = new FileOutputStream(toFile);
 				byte[] buffer = new byte[1024];
 				int bytesRead;
-				
-				while((bytesRead = from.read(buffer)) != -1) {
+
+				while ((bytesRead = from.read(buffer)) != -1) {
 					to.write(buffer, 0, bytesRead);
 				}
 			} catch (Exception e) {
@@ -129,70 +133,74 @@ public class IOStream {
 			}
 		}
 	}
-    
-    public void createCSVResultFile(RemoteHostList remoteHostList, String currentTime) {
-    	for (RemoteHost rh : remoteHostList.getListOfRemoteHost()) {
-        	String outpuCsvtFile = "./host/" + currentTime + "_" + rh.getIP() + "/" + currentTime + "_" + rh.getIP() + "_EPAV_Result.csv";
-        	
-        	try {
-				CsvWriter csvOutput = new CsvWriter(new FileWriter(outpuCsvtFile, true), ' ');
-				
+
+	public void createCSVResultFile(RemoteHostList remoteHostList,
+			String currentTime) {
+		for (RemoteHost rh : remoteHostList.getListOfRemoteHost()) {
+			String outpuCsvtFile = "./host/" + currentTime + "_" + rh.getIP()
+					+ "/" + currentTime + "_" + rh.getIP() + "_EPAV_Result.csv";
+
+			try {
+				CsvWriter csvOutput = new CsvWriter(new FileWriter(
+						outpuCsvtFile, true), ' ');
+
 				csvOutput.write("Remote host infomation:");
 				csvOutput.endRecord();
 				csvOutput.endRecord();
-				
+
 				csvOutput.write("IP Address:");
 				csvOutput.write(rh.getIP());
 				csvOutput.endRecord();
-				
+
 				csvOutput.write("MAC Address:");
 				csvOutput.write(rh.getMAC());
 				csvOutput.endRecord();
-				
+
 				csvOutput.write("Operating system details:");
 				csvOutput.write(rh.getOS());
 				csvOutput.endRecord();
 				csvOutput.endRecord();
-				
+
 				csvOutput.write("List of Ports:");
 				csvOutput.endRecord();
-				
+
 				csvOutput.write("Name");
 				csvOutput.write("State");
 				csvOutput.write("Service");
 				csvOutput.write("Warning");
 				csvOutput.write("Solution");
 				csvOutput.endRecord();
-				
+
 				for (Port p : rh.getPorts().getListOfPort()) {
 					csvOutput.write(p.getName());
 					csvOutput.write(p.getState());
 					csvOutput.write(p.getService());
 					csvOutput.write(p.getWarning());
 					csvOutput.write(p.getSolution());
-					csvOutput.endRecord();					
+					csvOutput.endRecord();
 				}
 				csvOutput.endRecord();
-				
+
 				csvOutput.write("List of Vulnerabilities:");
 				csvOutput.endRecord();
-				
+
 				csvOutput.write("Name");
 				csvOutput.write("State");
 				csvOutput.write("Patches");
 				csvOutput.endRecord();
-				
-				for (Vulnerability v : rh.getVulnerabilities().getListOfVulnerability()) {
+
+				for (Vulnerability v : rh.getVulnerabilities()
+						.getListOfVulnerability()) {
 					csvOutput.write(v.getName());
 					csvOutput.write(v.getState());
 					csvOutput.write(v.getPatchList().display());
-					csvOutput.endRecord();					
+					csvOutput.endRecord();
 				}
-				
+
 				csvOutput.close();
 			} catch (Exception e) {
 				e.printStackTrace();
 			}
 		}
-    }
+	}
 }

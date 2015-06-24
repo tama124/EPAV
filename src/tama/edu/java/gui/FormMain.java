@@ -22,30 +22,31 @@ public class FormMain extends JFrame {
 			}
 		});
 	}
-	
+
 	private static final long serialVersionUID = 1L;
-	
+
 	private JLabel lblTitle;
 	private JButton btnFeatureOne;
 	private JButton btnFeatureTwo;
 	private JButton btnUpdate;
 	private JButton btnAbout;
 	private JButton btnExit;
-	
+
 	private Process updateProcess = null;
 
 	public FormMain() {
 		// get screen size
 		Dimension screenSize = new Util().getScreenSize();
-		
+
 		// set up standard button size of this frame
 		Dimension buttonSize = new Dimension(400, 50);
-		
+
 		// set up frame
 		this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		this.setTitle("EPAV");
 		this.setSize(600, 480);
-		this.setLocation(screenSize.width / 2 - this.getWidth() / 2, screenSize.height / 2 - this.getHeight() / 2 - 50);
+		this.setLocation(screenSize.width / 2 - this.getWidth() / 2,
+				screenSize.height / 2 - this.getHeight() / 2 - 50);
 		this.setResizable(false);
 		this.setLayout(null);
 
@@ -55,11 +56,12 @@ public class FormMain extends JFrame {
 		lblTitle.setLocation(this.getWidth() / 2 - lblTitle.getWidth() / 2, 0);
 		lblTitle.setFont(new Font("Tahoma", 1, 20));
 		this.add(lblTitle);
-		
+
 		// set up button feature one
 		btnFeatureOne = new JButton("Vulnerabilities Scanner");
 		btnFeatureOne.setSize(buttonSize);
-		btnFeatureOne.setLocation(this.getWidth() / 2 - btnFeatureOne.getWidth() / 2, 100);
+		btnFeatureOne.setLocation(
+				this.getWidth() / 2 - btnFeatureOne.getWidth() / 2, 100);
 		btnFeatureOne.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
 				FormFeatureOne formFeatureOne = new FormFeatureOne();
@@ -72,7 +74,8 @@ public class FormMain extends JFrame {
 		// set up button feature two
 		btnFeatureTwo = new JButton("Insert Exploit");
 		btnFeatureTwo.setSize(buttonSize);
-		btnFeatureTwo.setLocation(this.getWidth() / 2 - btnFeatureTwo.getWidth() / 2, 160);
+		btnFeatureTwo.setLocation(
+				this.getWidth() / 2 - btnFeatureTwo.getWidth() / 2, 160);
 		btnFeatureTwo.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
 				FormFeatureTwo formFeatureTwo = new FormFeatureTwo();
@@ -85,20 +88,28 @@ public class FormMain extends JFrame {
 		// set up button update
 		btnUpdate = new JButton("Update Patches");
 		btnUpdate.setSize(buttonSize);
-		btnUpdate.setLocation(this.getWidth() / 2 - btnUpdate.getWidth() / 2, 220);
+		btnUpdate.setLocation(this.getWidth() / 2 - btnUpdate.getWidth() / 2,
+				220);
 		btnUpdate.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
-				if(new Util().isOnline()) {
+				if (new Util().isOnline()) {
 					try {
-						JOptionPane.showMessageDialog(null, "The update will run in background!", "Informing", JOptionPane.INFORMATION_MESSAGE);
+						JOptionPane.showMessageDialog(null,
+								"The update will run in background!",
+								"Informing", JOptionPane.INFORMATION_MESSAGE);
 						String execute = "bash ./src/main/edu/update/update_patches.bash";
 						updateProcess = Runtime.getRuntime().exec(execute);
 					} catch (Exception e) {
-						JOptionPane.showMessageDialog(null, "Something was wrong! Please try again later!", "Error", JOptionPane.ERROR_MESSAGE);
+						JOptionPane.showMessageDialog(null,
+								"Something was wrong! Please try again later!",
+								"Error", JOptionPane.ERROR_MESSAGE);
 					}
-				}
-				else {
-					JOptionPane.showMessageDialog(null, "This feature need your Internet connection! Please make sure you are now online!", "Error", JOptionPane.ERROR_MESSAGE);
+				} else {
+					JOptionPane
+							.showMessageDialog(
+									null,
+									"This feature need your Internet connection! Please make sure you are now online!",
+									"Error", JOptionPane.ERROR_MESSAGE);
 				}
 			}
 		});
@@ -123,7 +134,7 @@ public class FormMain extends JFrame {
 		btnExit.setLocation(this.getWidth() / 2 - btnExit.getWidth() / 2, 340);
 		btnExit.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
-				if(updateProcess != null) {
+				if (updateProcess != null) {
 					updateProcess.destroy();
 				}
 				dispose();

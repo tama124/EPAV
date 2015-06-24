@@ -12,14 +12,14 @@ public class PortList {
 	public PortList() {
 		listOfPort = new ArrayList<Port>();
 	}
-	
+
 	public void add(Port port) {
 		listOfPort.add(port);
 	}
 
 	public String display() {
 		String tmp = "[";
-		for(Port p : listOfPort) {
+		for (Port p : listOfPort) {
 			tmp += p;
 		}
 		tmp += "]";

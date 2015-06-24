@@ -17,9 +17,9 @@ import tama.edu.java.util.Util;
 
 public class FormFeatureTwo extends JFrame {
 	private static final long serialVersionUID = 1L;
-	
+
 	private JLabel lblTitle;
-	
+
 	private JLabel lblPathExploit;
 	private JTextField txtPathExploit;
 
@@ -37,7 +37,7 @@ public class FormFeatureTwo extends JFrame {
 
 	private JButton btnInsert;
 	private JButton btnBack;
-	
+
 	private String pathExploit = "";
 	private String payload = "";
 	private String lport = "";
@@ -47,15 +47,16 @@ public class FormFeatureTwo extends JFrame {
 	public FormFeatureTwo() {
 		// get screen size
 		Dimension screenSize = new Util().getScreenSize();
-		
+
 		// setup this form
 		this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		this.setTitle("EPAV");
 		this.setSize(600, 480);
-		this.setLocation(screenSize.width / 2 - this.getWidth() / 2, screenSize.height / 2 - this.getHeight() / 2 - 50);
+		this.setLocation(screenSize.width / 2 - this.getWidth() / 2,
+				screenSize.height / 2 - this.getHeight() / 2 - 50);
 		this.setResizable(false);
 		this.setLayout(null);
-		
+
 		lblTitle = new JLabel("Insert Exploit");
 		lblTitle.setSize(200, 100);
 		lblTitle.setLocation(this.getWidth() / 2 - lblTitle.getWidth() / 2, 0);
@@ -146,11 +147,15 @@ public class FormFeatureTwo extends JFrame {
 					lport = txtLocalPort.getText();
 					rport = txtRemotePort.getText();
 					target = txtTarget.getText();
-					new InsertExploit().insertExploit(pathExploit, payload, lport, rport, target);
+					new InsertExploit().insertExploit(pathExploit, payload,
+							lport, rport, target);
 				} catch (Exception e) {
-					JOptionPane.showMessageDialog(null, e.getMessage(), "Error", JOptionPane.ERROR_MESSAGE);
+					JOptionPane.showMessageDialog(null, e.getMessage(),
+							"Error", JOptionPane.ERROR_MESSAGE);
 				} finally {
-					JOptionPane.showMessageDialog(null, "Insert exploit successful!", "Informing", JOptionPane.INFORMATION_MESSAGE);
+					JOptionPane.showMessageDialog(null,
+							"Insert exploit successful!", "Informing",
+							JOptionPane.INFORMATION_MESSAGE);
 				}
 			}
 		});
