@@ -14,6 +14,7 @@ import tama.edu.java.model.Port;
 import tama.edu.java.model.RemoteHost;
 import tama.edu.java.model.RemoteHostList;
 import tama.edu.java.model.Vulnerability;
+import tama.edu.java.util.Util;
 
 import com.csvreader.CsvWriter;
 
@@ -48,7 +49,6 @@ public class IOStream {
 	public void appendTextToExistingFile(String fileName, String content) {
 		try {
 			FileWriter fw = new FileWriter(fileName, true);
-			fw.write("\n");
 			fw.write(content);
 			fw.close();
 		} catch (Exception e) {
@@ -61,8 +61,7 @@ public class IOStream {
 		Thread t = new Thread(new Runnable() {
 			public void run() {
 				try {
-					File[] listOfPatches = new File("./src/main/edu/patch")
-							.listFiles();
+					File[] listOfPatches = new File(Util.getHomeDirectory() + "/EPAV/patch").listFiles();
 
 					for (File file : listOfPatches) {
 						if (file.isFile()) {
@@ -94,7 +93,7 @@ public class IOStream {
 			newDirectory.mkdirs();
 		}
 		for (int i = 0; i < patchList.getListOfPatch().size(); i++) {
-			copyFile("./src/main/edu/patch/"
+			copyFile(Util.getHomeDirectory() + "/EPAV/patch/"
 					+ patchList.getListOfPatch().get(i).getName(), hostPath
 					+ "/" + patchList.getListOfPatch().get(i).getName());
 		}

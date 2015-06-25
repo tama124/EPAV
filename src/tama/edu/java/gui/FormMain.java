@@ -97,7 +97,7 @@ public class FormMain extends JFrame {
 						JOptionPane.showMessageDialog(null,
 								"The update will run in background!",
 								"Informing", JOptionPane.INFORMATION_MESSAGE);
-						String execute = "bash ./src/main/edu/update/update_patches.bash";
+						String execute = "bash " + Util.getHomeDirectory() + "/EPAV/update/update_patches.bash";
 						updateProcess = Runtime.getRuntime().exec(execute);
 					} catch (Exception e) {
 						JOptionPane.showMessageDialog(null,

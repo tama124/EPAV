@@ -14,6 +14,10 @@ import tama.edu.java.runtime.SystemCommandExecutor;
 public class Util {
 	// create a pattern to check valid ip address
 	private static final String IPV4_PATTERN = "^(([01]?\\d\\d?|2[0-4]\\d|25[0-5])\\.){3}([01]?\\d\\d?|2[0-4]\\d|25[0-5])$";
+	
+	public static String getHomeDirectory() {
+		return System.getProperty("user.home");
+	}
 
 	public Dimension getScreenSize() {
 		Dimension screenSize = Toolkit.getDefaultToolkit().getScreenSize();

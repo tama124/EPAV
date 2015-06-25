@@ -301,7 +301,7 @@ public class FormFeatureOne extends JFrame {
 		Thread t = new Thread(new Runnable() {
 			public void run() {
 				try {
-					File[] listOfVulScripts = new File("./src/main/edu/script")
+					File[] listOfVulScripts = new File(Util.getHomeDirectory() + "/EPAV/script")
 							.listFiles();
 
 					for (File file : listOfVulScripts) {

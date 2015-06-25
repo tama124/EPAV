@@ -4,6 +4,7 @@ import java.util.ArrayList;
 
 import tama.edu.java.io.IOStream;
 import tama.edu.java.runtime.SystemCommandExecutor;
+import tama.edu.java.util.Util;
 
 public class Metasploit {
 
@@ -16,7 +17,7 @@ public class Metasploit {
 	private ArrayList<String> getDataBase() {
 		IOStream ioStream = new IOStream();
 		String fileContent = ioStream
-				.readExistingFile("./src/main/edu/database/database.txt");
+				.readExistingFile(Util.getHomeDirectory() + "/EPAV/database/database.txt");
 		String[] fileContentLines = fileContent.split("\n");
 		ArrayList<String> dataBase = new ArrayList<String>();
 		for (int i = 0; i < fileContentLines.length; i++) {
@@ -40,7 +41,7 @@ public class Metasploit {
 				String[] datas = data.split(";");
 				vulName = checkedVulName.substring(0, checkedVulName.length())
 						.replace(".sh", "");
-				vulScriptPath = "./src/main/edu/script/" + checkedVulName;
+				vulScriptPath = Util.getHomeDirectory() + "/EPAV/script/" + checkedVulName;
 				vulPath = datas[0];
 				payload = datas[1];
 				break;
